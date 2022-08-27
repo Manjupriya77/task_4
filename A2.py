@@ -49,7 +49,7 @@ df.groupby(['Name','CodeKata_Score']).size().head(3)
 
 #12.Department wise codekata performence (pie chart)
 d3=d1.Department.value_counts()
-d3.plot(kind="bar")
+d3.plot(kind="pie")
 
 
 
