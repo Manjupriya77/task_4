@@ -6,37 +6,44 @@ import pandas as pd
 import pandas as pd
 d1=pd.read_csv("https://raw.githubusercontent.com/Manjupriya77/task_4/main/college_1.csv")
 d2=pd.read_csv("https://raw.githubusercontent.com/Manjupriya77/task_4/main/college_2.csv")
-df=pd.merge(d1,d2,how='right')
+df=pd.concat([d1,d2])
 df
 
 #3.consider if the codekata score exceeds 15000 points(present week) then make a csv on those observations as Exceeded expectations.csv
-wr=d1[d1.CodeKata_Score>=15000]
-wr
+EE=df[(df.CodeKata_Score>=15000)]
+EE.to_csv(" Exceeded expectations.csv")
 
 #4.if 10000<codekata score<15000 (Reached_expectations.csv)
-d1[(d1.CodeKata_Score<=15000) & (d1.CodeKata_Score>=10000)]
+RE=df[(df.CodeKata_Score<=15000) & (df.CodeKata_Score>=10000)]
+RE.to_csv("Reached_expectations.csv")
 
 
 #5.if 7000<codekata score<10000 (Needs_Improvement.csv)
-d1[(d1.CodeKata_Score<=10000) & (d1.CodeKata_Score>=7000)]
+NI=d1[(d1.CodeKata_Score<=10000) & (d1.CodeKata_Score>=7000)]
+NI.to_csv("Needs_Improvement.csv")
 
 
 #6.if codekate score < 7000 (Unsatisfactory.csv)
-d1[d1.CodeKata_Score<=7000]
-
+new=d1[d1.CodeKata_Score<=7000]
+new.to_csv("Unsatisfactory.csv"
+           
 
 #7.Average of previous week geekions vs this week geekions (i.e Previous Geekions vs CodeKata Score)
 
 #8.No of students participated
-d1.Name.count()
+df.Name.count()
 
 
 #9.#Average completion of python course or my_sql or python english or computational thinking
 
+
+
 #10.rising star of the week (top 3 candidate who performed well in that particular week)
+RS=df.sort_values(by="Rising",ascending=False)
+RS.Name.head(3)
 
 #11.Shining stars of the week (top 3 candidates who has highest geekions)
-d1.groupby(['Name','CodeKata_Score']).size().head(3)
+df.groupby(['Name','CodeKata_Score']).size().head(3)
 
 
 
